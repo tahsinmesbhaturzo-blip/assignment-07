@@ -16,24 +16,31 @@ import { FaGithub } from "react-icons/fa";
 import { toast } from "sonner";
 
 const SignInForm = () => {
-
-  const handleGoogleButton = async () => {
-    const data = await authClient.signIn.social({
-      provider: "google",
-    });
-    
-  };
-  const handleGithubButton = async () => {
-    const data = await authClient.signIn.social({
-      provider: "github"
-    })
-    
-  }
-
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const callbackUrl = searchParams.get("callbackUrl") || "/";
+
+  const handleGoogleButton = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: callbackUrl,
+      });
+    } catch {
+      toast.error("Google দিয়ে সাইন ইন করতে সমস্যা হয়েছে।");
+    }
+  };
+
+  const handleGithubButton = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "github",
+        callbackURL: callbackUrl,
+      });
+    } catch {
+      toast.error("GitHub দিয়ে সাইন ইন করতে সমস্যা হয়েছে।");
+    }
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

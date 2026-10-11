@@ -17,17 +17,26 @@ import { toast } from 'sonner';
 const SignUpPage = () => {
 
   const handleGoogleButton = async () => {
-      const data = await authClient.signIn.social({
+    try {
+      await authClient.signIn.social({
         provider: "google",
+        callbackURL: "/",
       });
-      
-    };
-    const handleGithubButton = async () => {
-      const data = await authClient.signIn.social({
-        provider: "github"
-      })
-      
+    } catch {
+      toast.error("Google দিয়ে সাইন আপ করতে সমস্যা হয়েছে।");
     }
+  };
+
+  const handleGithubButton = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/",
+      });
+    } catch {
+      toast.error("GitHub দিয়ে সাইন আপ করতে সমস্যা হয়েছে।");
+    }
+  };
 
 
   const router = useRouter();
