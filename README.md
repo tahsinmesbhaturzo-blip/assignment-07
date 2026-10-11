@@ -29,7 +29,7 @@
    Better Auth ও MongoDB অ্যাডাপ্টার ব্যবহার করে আধুনিক ও নিরাপদ লগইন সিস্টেম—যাতে রয়েছে সাধারণ ইমেইল/পাসওয়ার্ডের পাশাপাশি এক-ক্লিকে **Google** এবং **GitHub** ওআথ (OAuth) সোশ্যাল লগইন ও সাইন-আপ সুবিধা।
 
 4. 🏷️ **ক্যাটাগরি ভিত্তিক পণ্য অনুসন্ধান ও ফিল্টারিং (Category-Based Filtering):**  
-   বিভিন্ন ক্যাটাগরি (শাকসবজি, ফলমূল, মাছ-মাংস, মসলা ইত্যাদি) ব্রাউজ করার জন্য ডাইনামিক নেভিগেশন বার, যা দ্রুত ও সহজে নির্দিষ্ট পণ্য খুঁজে পেতে সহায়তা করে।
+   বিভিন্ন ক্যাটাগরি (শাকসবজি, ফলমূল, মাছ-মাংস, মসলা ইত্যাদি) ব্রাউজ করার জন্য ডাইনামিক নেভিগেশন বার এবং দাম অনুযায়ী সর্টিং কন্ট্রোল সুবিধা।
 
 5. 🇧🇩 **সম্পূর্ণ বাংলা লোকালাইজেশন ও রেসপনসিভ ডিজাইন (Bangla Localization & Responsive UI):**  
    হিন্দ শিলিগুড়ি (Hind Siliguri) ফন্ট এবং সংখ্যাগুলোর বাংলা রূপান্তর (Bengali Numerals) সহ দৃষ্টিনন্দন ইন্টারফেস, যা মোবাইল, ট্যাবলেট এবং ডেক্সটপ সব ডিভাইসেই স্মুথভাবে কাজ করে।
@@ -49,3 +49,42 @@
 
 ---
 
+## 🚀 লোকাল সেটআপ নির্দেশিকা (Local Setup Guide)
+
+### ১. রিপোজিটরি ক্লোন করুন
+```bash
+git clone https://github.com/tahsinmesbhaturzo-blip/assignment-07.git
+cd assignment-07
+```
+
+### ২. প্যাকেজসমূহ ইনস্টল করুন
+```bash
+npm install
+```
+
+### ৩. Environment Variables তৈরি করুন
+প্রজেক্টের রুট ডিরেক্টরিতে একটি `.env` ফাইল তৈরি করুন এবং নিচের ভেরিয়েবলগুলো কনফিগার করুন:
+
+```env
+BETTER_AUTH_SECRET=your_better_auth_secret_here
+BETTER_AUTH_URL=http://localhost:3000
+BETTER_AUTH_MONGODB_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?appName=Cluster0
+
+BETTER_AUTH_GOOGLE_CLIENT_ID=your_google_client_id
+BETTER_AUTH_GOOGLE_SECRET=your_google_client_secret
+
+BETTER_AUTH_GITHUB_CLIENT_ID=your_github_client_id
+BETTER_AUTH_GITHUB_SECRET=your_github_client_secret
+```
+
+### ৪. ডেভেলপমেন্ট সার্ভার চালু করুন
+```bash
+npm run dev
+```
+
+---
+
+## 👨‍💻 লেখক (Author)
+
+- **ডেভেলপার:** তাহসিন মেসবাহ তুর্য (Tahsin Mesbha Turzo)
+- **লাইভ ডেমো:** [https://assignment-7-gilt.vercel.app/](https://assignment-7-gilt.vercel.app/)

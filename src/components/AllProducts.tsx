@@ -27,7 +27,7 @@ if (!contentType?.includes("application/json")) {
 const data: ProductItem[] = await response.json();
           
     return (
-        <section id='allProducts' className="scroll-mt-33 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <section id='সব-পণ্য' className="scroll-mt-33 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
      
       <div className="flex  flex-col gap-4 sm:gap-3 mb-5 sm:mb-6">
         

@@ -13,12 +13,19 @@ import {
 } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useEffect } from "react";
 import { toast } from "sonner";
 
 const SignInForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
+
+  useEffect(() => {
+    if (searchParams.get("callbackUrl")) {
+      toast.info("পণ্যের বিস্তারিত দেখতে অনুগ্রহ করে আগে লগইন করুন।");
+    }
+  }, [searchParams]);
 
   const handleGoogleButton = async () => {
     try {

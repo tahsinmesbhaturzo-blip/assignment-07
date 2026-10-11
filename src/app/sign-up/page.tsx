@@ -66,8 +66,8 @@ const SignUpPage = () => {
       return;
     }
     if (resData) {
-      toast.success("সাইন আপ সফল হয়েছে!");
-      router.push("/");
+      toast.success("সাইন আপ সফল হয়েছে! অনুগ্রহ করে সাইন ইন করুন।");
+      router.push("/sign-in");
     }
   };
 

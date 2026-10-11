@@ -1,5 +1,6 @@
 import ProductList from "@/components/shared/ProductList";
 import { ProductItem } from "@/types/ProductType";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ categoriesId: string }>;
@@ -25,7 +26,15 @@ const ProductCategories = async ({ params }: Props) => {
     }
   );
 
+  if (!response.ok) {
+    notFound();
+  }
+
   const products: ProductItem[] = await response.json();
+
+  if (!products || products.length === 0) {
+    notFound();
+  }
 
   const categoryName = products?.[0]?.categoryNameBn;
   const categoryIcon = products?.[0]?.categoryIcon;

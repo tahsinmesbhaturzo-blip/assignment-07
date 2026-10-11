@@ -1,6 +1,9 @@
 export const instant = false;
 import { ProductItem } from "@/types/ProductType";
 import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect, notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ productId: string }>;
@@ -16,14 +19,29 @@ const toBn = (num: number | string | undefined | null): string => {
 const ProductDetailsPage = async ({ params }: Props) => {
   const { productId } = await params;
 
+  // Protected route - requires login
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect(`/sign-in?callbackUrl=/product/${productId}`);
+  }
+
   const response = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
     { cache: "no-store" }
   );
 
- 
+  if (!response.ok) {
+    notFound();
+  }
 
   const product: ProductItem = await response.json();
+
+  if (!product || !product.id) {
+    notFound();
+  }
 
   // Calculate min, max, and average prices from markets array
   const hasMarkets = product.markets && product.markets.length > 0;

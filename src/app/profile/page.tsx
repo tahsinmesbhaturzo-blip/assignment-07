@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useSession, updateUser, signOut } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 const ProfilePage: React.FC = () => {
   const { data: session, isPending } = useSession();
   const router = useRouter();
@@ -139,30 +140,54 @@ const ProfilePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Sign out button */}
-          <button
-            onClick={handleSignOut}
-            type="button"
-            disabled={isSigningOut}
-            className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-red-300 px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="h-4 w-4 rotate-180"
+          {/* Actions: Update info and Sign out buttons */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <Link
+              href="/profile/update"
+              className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-[#008a45] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#007339]"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                />
+              </svg>
+              তথ্য পরিবর্তন
+            </Link>
 
-            {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
-          </button>
+            {/* Sign out button */}
+            <button
+              onClick={handleSignOut}
+              type="button"
+              disabled={isSigningOut}
+              className="flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-red-300 px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="h-4 w-4 rotate-180"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                />
+              </svg>
+
+              {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
+            </button>
+          </div>
         </div>
 
         {/* Success message */}
